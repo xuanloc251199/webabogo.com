@@ -1,0 +1,11 @@
+{
+    "id": "botble/services",
+    "name": "Services",
+    "namespace": "Botble\\Services\\",
+    "provider": "Botble\\Services\\Providers\\ServicesServiceProvider",
+    "author": "Tr?nh Công",
+    "url": "",
+    "version": "1.0.0",
+    "description": "D?ch v? di kèm",
+    "minimum_core_version": "7.3.1"
+}

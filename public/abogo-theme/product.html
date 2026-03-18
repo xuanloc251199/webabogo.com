@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/libraries/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light shadow">
+            <div class="container d-flex justify-content-between align-items-center">
+                <!-- Bên trái -->
+                <div class="d-flex align-items-center">
+                    <!-- Logo -->
+                    <a class="navbar-brand me-3 site-logo fs-41 fw-500 text-dark" href="index.html">
+                        abogo
+                    </a>
+    
+                    <!-- Ô chọn địa điểm -->
+                    <select class="form-select select2-location bg-gray border-0">
+                        <option value="1" selected>Hà Nội</option>
+                        <option value="2">TP HCM</option>
+                        <option value="3">Đà Nẵng</option>
+                    </select>
+    
+                    <!-- Ô nhập từ khóa tìm kiếm -->
+                    <div class="input-group ms-2">
+                            <span class="input-group-text bg-gray border-0">
+                                <i class="fas fa-search text-gray"></i>
+                            </span>
+                        <input type="text" class="form-control bg-gray border-0" placeholder="Tìm kiếm">
+                    </div>
+                </div>
+    
+                <!-- Bên phải -->
+                <div class="d-flex align-items-center">
+                    <!-- Chọn ngôn ngữ -->
+                    <div class="dropdown me-1">
+                        <button class="btn dropdown-toggle d-flex align-items-center" type="button"
+                                data-bs-toggle="dropdown">
+                            <div class="mobile-hidden">
+                                <img src="assets/images/svg/vn.svg" alt="VN" height="20" class="me-1 "> VIE
+                            </div>
+                            <div class="desktop-hidden">
+                                <i class="fa-solid fa-globe fs-22"></i>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><img src="assets/images/svg/vn.svg" alt="ENG"
+                                                                       height="20" class="me-1"> ENG</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="assets/images/svg/vn.svg" alt="FRA"
+                                                                       height="20" class="me-1"> FRA</a></li>
+                        </ul>
+                    </div>
+    
+                    <!-- Icon giỏ hàng -->
+                    <a href="#" class="me-3 position-relative pt-1">
+                        <i class="fa-solid fa-cart-plus text-dark fs-22"></i>
+                    </a>
+    
+                    <!-- Icon thông báo -->
+                    <a href="#" class="me-3 position-relative pt-1">
+                        <i class="fa-solid fa-bell text-dark fs-22"></i>
+                    </a>
+    
+                    <!-- Icon menu (Hiện navbar khi ấn) -->
+                    <button class="btn mobile-hidden" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+                        <img src="assets/images/svg/menu.svg" alt="menu-icon">
+                    </button>
+    
+                    <!-- Offcanvas Menu -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title">Menu</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block py-2">Trang chủ</a></li>
+                                <li><a href="about-us.html" class="d-block py-2">Giới thiệu</a></li>
+                                <li><a href="contact.html" class="d-block py-2">Liên hệ</a></li>
+                                <li><a href="faq.html" class="d-block py-2">Faq</a></li>
+                                <li><a href="cart.html" class="d-block py-2">Cart</a></li>
+                                <li><a href="blog.html" class="d-block py-2">Blog</a></li>
+                                <li><a href="blog-list.html" class="d-block py-2">Blog list</a></li>
+                                <li><a href="account.html" class="d-block py-2">Account</a></li>
+                                <li><a href="#" class="d-block py-2">Dịch vụ</a></li>
+                                <li><a href="#" class="d-block py-2">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="mobile-menu desktop-hidden">
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-home"></i>
+                            <span>Abogo</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-info-circle"></i>
+                            <span>Giới thiệu</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-cogs"></i>
+                            <span>Dịch vụ</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-envelope"></i>
+                            <span>Liên hệ</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-user"></i>
+                            <span>Tài khoản</span>
+                        </a>
+                    </div>
+    
+                    <!-- Nút Đăng nhập / Đăng ký -->
+                    <div class="ms-3 d-none d-lg-block">
+                        <a href="login.html" class="fw-600 fs-14 text-dark text-decoration-none">Đăng nhập</a>
+                        <span>/</span>
+                        <a href="register.html" class="fw-600 fs-14 text-dark text-decoration-none">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+    
+    
+        </nav>
+    </header>
+
+<nav class="container my-3" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Tin tức</li>
+    </ol>
+</nav>
+
+<main>
+    <div class="product-search-section container">
+        <div class="row align-items-center justify-content-center">
+            <!-- Ô tìm kiếm -->
+            <div class="col-md-auto col-12">
+                <div class="search-input">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                </div>
+            </div>
+
+            <!-- Ngày bắt đầu -->
+            <div class="col-md-auto col-6">
+                <div class="single-date-picker">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span>Ngày bắt đầu</span>
+                </div>
+            </div>
+
+            <!-- Ngày kết thúc -->
+            <div class="col-md-auto col-6">
+                <div class="single-date-picker">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span>Ngày kết thúc</span>
+                </div>
+            </div>
+
+            <!-- Chọn số lượng người/phòng -->
+            <div class="col-md-auto col-12">
+                <div class="guest-picker">
+                    <i class="fa fa-users"></i>
+                    <span>1 Phòng - 1 Người lớn - 0 Trẻ em</span>
+                    <div class="guest-dropdown">
+                        <div class="guest-item">
+                            <span>Phòng</span>
+                            <div class="counter">
+                                <button class="btn minus">-</button>
+                                <span class="count">1</span>
+                                <button class="btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="guest-item">
+                            <span>Người lớn</span>
+                            <div class="counter">
+                                <button class="btn minus">-</button>
+                                <span class="count">1</span>
+                                <button class="btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="guest-item">
+                            <span>Trẻ em</span>
+                            <div class="counter">
+                                <button class="btn minus">-</button>
+                                <span class="count">0</span>
+                                <button class="btn plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select địa điểm -->
+            <div class="col-md-auto col-12">
+                <select class="select2-location">
+                    <option value="">Chọn địa điểm</option>
+                    <option value="hanoi">Hà Nội</option>
+                    <option value="hcm">TP.HCM</option>
+                </select>
+            </div>
+
+            <!-- Bộ lọc & Sắp xếp -->
+            <div class="col-md-auto col-4">
+                <button class="btn filter-btn"><i class="fa fa-filter"></i> Bộ lọc</button>
+            </div>
+            <div class="col-md-auto col-4">
+                <button class="btn sort-btn"><i class="fa fa-sort"></i> Sắp xếp</button>
+            </div>
+
+            <!-- Nút tìm kiếm -->
+            <div class="col-md-auto col-4">
+                <button class="btn btn-main-color px-5"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-category container py-4">
+        <div class="d-flex justify-content-center">
+            <!-- 8 phần tử -->
+            <div class="bg-white rounded-20 d-flex p-3 pb-0 shadow-sm gap-4">
+                <div class="text-center">
+                    <img src="assets/images/menu/menu-1.png" class="img-fluid rounded" width="100" height="100"
+                         alt="Hình ảnh">
+                    <p class="my-1 fw-600 fs-14">Tiêu đề 5</p>
+                </div>
+                <div class="text-center">
+                    <img src="assets/images/menu/menu-1.png" class="img-fluid rounded" width="100" height="100"
+                         alt="Hình ảnh">
+                    <p class="my-1 fw-600 fs-14">Tiêu đề 6</p>
+                </div>
+                <div class="text-center">
+                    <img src="assets/images/menu/menu-1.png" class="img-fluid rounded" width="100" height="100"
+                         alt="Hình ảnh">
+                    <p class="my-1 fw-600 fs-14">Tiêu đề 7</p>
+                </div>
+                <div class="text-center">
+                    <img src="assets/images/menu/menu-1.png" class="img-fluid rounded" width="100" height="100"
+                         alt="Hình ảnh">
+                    <p class="my-1 fw-600 fs-14">Tiêu đề 8</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="flash-sale">
+        <div class="container py-4 bg-white rounded-20">
+            <h3 class="mb-3 fw-bold px-3">Ưu đãi hôm nay</h3>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="product-item text-left p-3 bg-white rounded-20 shadow-sm">
+                        <img src="assets/images/products/product-image.png" class="img-fluid rounded"
+                             alt="Tên sản phẩm">
+                        <h5 class="mt-2 fw-semibold fs-18 fw-600">Tour Đà Nẵng</h5>
+                        <p class="text-muted mb-1 fs-16 fw-300">Đà Nẵng, Việt Nam</p>
+                        <p class="mb-1 mt-2 fs-18 fw-600">2.500.000đ</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-item text-left p-3 bg-white rounded-20 shadow-sm">
+                        <img src="assets/images/products/product-image.png" class="img-fluid rounded"
+                             alt="Tên sản phẩm">
+                        <h5 class="mt-2 fw-semibold fs-18 fw-600">Tour Hạ Long</h5>
+                        <p class="text-muted mb-1 fs-16 fw-300">Quảng Ninh, Việt Nam</p>
+                        <p class="mb-1 mt-2 fs-18 fw-600">3.000.000đ</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-item text-left p-3 bg-white rounded-20 shadow-sm">
+                        <img src="assets/images/products/product-image.png" class="img-fluid rounded"
+                             alt="Tên sản phẩm">
+                        <h5 class="mt-2 fw-semibold fs-18 fw-600">Tour Nha Trang</h5>
+                        <p class="text-muted mb-1 fs-16 fw-300">Nha Trang, Việt Nam</p>
+                        <p class="mb-1 mt-2 fs-18 fw-600">2.800.000đ</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-item text-left p-3 bg-white rounded-20 shadow-sm">
+                        <img src="assets/images/products/product-image.png" class="img-fluid rounded"
+                             alt="Tên sản phẩm">
+                        <h5 class="mt-2 fw-semibold fs-18 fw-600">Tour Phú Quốc</h5>
+                        <p class="text-muted mb-1 fs-16 fw-300">Phú Quốc, Việt Nam</p>
+                        <p class="mb-1 mt-2 fs-18 fw-600">3.200.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promotion">
+        <div class="container py-4 px-0">
+            <h3 class="mb-3 fw-bold px-3">Sản phẩm ưu đãi</h3>
+            <div class="swiper product-swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Bắt đầu sản phẩm -->
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kết thúc sản phẩm -->
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promotion">
+        <div class="container py-4 px-0">
+            <h3 class="mb-3 fw-bold px-3">Sản phẩm ưu đãi</h3>
+            <div class="swiper product-swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Bắt đầu sản phẩm -->
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kết thúc sản phẩm -->
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tên sản phẩm">
+                            <div class="p-3">
+                                <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                    </p>
+                                    <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="news">
+        <div class="container py-4 px-0">
+            <h3 class="mb-3 fw-bold px-3">Tin tức mới nhất</h3>
+
+            <!-- Bộ lọc danh mục -->
+            <div class="mb-3">
+                <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge active">Du
+                    lịch</a>
+                <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">Du
+                    lịch</a>
+                <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">Khuyến
+                    mãi</a>
+                <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">Sự
+                    kiện</a>
+            </div>
+
+            <!-- Swiper Tin tức -->
+            <div class="swiper blog-swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Bắt đầu blog-item -->
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="blog-item bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tiêu đề bài viết">
+                            <div class="p-3">
+                                <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                    25/03/2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kết thúc blog-item -->
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="blog-item bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tiêu đề bài viết">
+                            <div class="p-3">
+                                <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                    25/03/2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="blog-item bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tiêu đề bài viết">
+                            <div class="p-3">
+                                <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                    25/03/2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="blog-item bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tiêu đề bài viết">
+                            <div class="p-3">
+                                <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                    25/03/2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-1 p-md-0">
+                        <div class="blog-item bg-white rounded-20 shadow-sm">
+                            <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                 alt="Tiêu đề bài viết">
+                            <div class="p-3">
+                                <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                    25/03/2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Footer -->
+<footer class="pt-5">
+    <div class="container bg-white text-center rounded-20">
+        <!-- Logo -->
+        <a class="navbar-brand me-3 site-logo fs-41 fw-500 text-dark" href="/">
+            abogo
+        </a>
+
+        <!-- Footer Widgets -->
+        <div class="row justify-content-center">
+            <!-- Cột Widget 1 -->
+            <div class="col-6 col-md-3 footer-widget">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-building fa-fw me-2 footer-icon-color"></i> Giới thiệu</li>
+                    <li><i class="fas fa-briefcase fa-fw me-2 footer-icon-color"></i> Tuyển dụng</li>
+                    <li><i class="fas fa-phone fa-fw me-2 footer-icon-color"></i> Liên hệ</li>
+                </ul>
+            </div>
+
+            <!-- Cột Widget 2 -->
+            <div class="col-6 col-md-3 footer-widget">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-question-circle fa-fw me-2 footer-icon-color"></i> FAQ</li>
+                    <li><i class="fas fa-shield-alt me-2 fa-fw footer-icon-color"></i> Bảo mật</li>
+                    <li><i class="fas fa-file-contract me-2 fa-fw footer-icon-color"></i> Điều khoản</li>
+                </ul>
+            </div>
+
+            <!-- Cột Widget 3 -->
+            <div class="col-6 col-md-3 footer-widget">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-plane me-2 fa-fw footer-icon-color"></i> Đặt vé máy bay</li>
+                    <li><i class="fas fa-hotel me-2 fa-fw footer-icon-color"></i> Đặt phòng khách sạn</li>
+                    <li><i class="fas fa-car me-2 fa-fw footer-icon-color"></i> Thuê xe</li>
+                </ul>
+            </div>
+
+            <!-- Cột Widget 4 (Chứng nhận) -->
+            <div class="col-6 col-md-3 footer-widget">
+                <div class="d-flex justify-content-center flex-column ps-3">
+                    <img src="assets/images/common/bo-cong-thuong.png" alt="Bộ Công Thương" class="me-2" width="80">
+                    <img src="assets/images/common/DMCA.png" alt="DMCA" width="80">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/b726da8c6e.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+
+</html>

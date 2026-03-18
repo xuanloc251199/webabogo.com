@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/libraries/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/libraries/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light shadow">
+            <div class="container d-flex justify-content-between align-items-center">
+                <!-- Bên trái -->
+                <div class="d-flex align-items-center">
+                    <!-- Logo -->
+                    <a class="navbar-brand me-3 site-logo fs-41 fw-500 text-dark" href="index.html">
+                        abogo
+                    </a>
+
+                    <!-- Ô chọn địa điểm -->
+                    <select class="form-select select2-location bg-gray border-0">
+                        <option value="1" selected>Hà Nội</option>
+                        <option value="2">TP HCM</option>
+                        <option value="3">Đà Nẵng</option>
+                    </select>
+
+                    <!-- Ô nhập từ khóa tìm kiếm -->
+                    <div class="input-group ms-2">
+                        <span class="input-group-text bg-gray border-0">
+                            <i class="fas fa-search text-gray"></i>
+                        </span>
+                        <input type="text" class="form-control bg-gray border-0" placeholder="Tìm kiếm">
+                    </div>
+                </div>
+
+                <!-- Bên phải -->
+                <div class="d-flex align-items-center">
+                    <!-- Chọn ngôn ngữ -->
+                    <div class="dropdown me-1">
+                        <button class="btn dropdown-toggle d-flex align-items-center" type="button"
+                            data-bs-toggle="dropdown">
+                            <div class="mobile-hidden">
+                                <img src="assets/images/svg/vn.svg" alt="VN" height="20" class="me-1 "> VIE
+                            </div>
+                            <div class="desktop-hidden">
+                                <i class="fa-solid fa-globe fs-22"></i>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><img src="assets/images/svg/vn.svg" alt="ENG"
+                                        height="20" class="me-1"> ENG</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="assets/images/svg/vn.svg" alt="FRA"
+                                        height="20" class="me-1"> FRA</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Icon giỏ hàng -->
+                    <a href="#" class="me-3 position-relative pt-1">
+                        <i class="fa-solid fa-cart-plus text-dark fs-22"></i>
+                    </a>
+
+                    <!-- Icon thông báo -->
+                    <a href="#" class="me-3 position-relative pt-1">
+                        <i class="fa-solid fa-bell text-dark fs-22"></i>
+                    </a>
+
+                    <!-- Icon menu (Hiện navbar khi ấn) -->
+                    <button class="btn mobile-hidden" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasMenu">
+                        <img src="assets/images/svg/menu.svg" alt="menu-icon">
+                    </button>
+
+                    <!-- Offcanvas Menu -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title">Menu</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block py-2">Trang chủ</a></li>
+                                <li><a href="about-us.html" class="d-block py-2">Giới thiệu</a></li>
+                                <li><a href="contact.html" class="d-block py-2">Liên hệ</a></li>
+                                <li><a href="faq.html" class="d-block py-2">Faq</a></li>
+                                <li><a href="cart.html" class="d-block py-2">Cart</a></li>
+                                <li><a href="blog.html" class="d-block py-2">Blog</a></li>
+                                <li><a href="blog-list.html" class="d-block py-2">Blog list</a></li>
+                                <li><a href="account.html" class="d-block py-2">Account</a></li>
+                                <li><a href="#" class="d-block py-2">Dịch vụ</a></li>
+                                <li><a href="#" class="d-block py-2">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mobile-menu d-none">
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-home"></i>
+                            <span>Abogo</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-info-circle"></i>
+                            <span>Giới thiệu</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-cogs"></i>
+                            <span>Dịch vụ</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-envelope"></i>
+                            <span>Liên hệ</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fa fa-user"></i>
+                            <span>Tài khoản</span>
+                        </a>
+                    </div>
+
+                    <!-- Nút Đăng nhập / Đăng ký -->
+                    <div class="ms-3 d-none d-lg-block">
+                        <a href="login.html" class="fw-600 fs-14 text-dark text-decoration-none">Đăng nhập</a>
+                        <span>/</span>
+                        <a href="register.html" class="fw-600 fs-14 text-dark text-decoration-none">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <nav style="--bs-breadcrumb-divider: '>';" class="container my-3" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Khách sạn A</li>
+        </ol>
+    </nav>
+
+    <main>
+        <div class="container py-0 py-md-4 product-page">
+            <div class="product-images bg-white rounded-20 p-4 mb-3">
+                <!-- Gallery -->
+                <div class="hotel-gallery row g-2">
+                    <div class="col-md-6 mb-3">
+                        <a href="assets/images/products/product-image.png"
+                            class="gallery-item main-img d-block position-relative">
+                            <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                class="img-fluid rounded-10">
+                        </a>
+                    </div>
+                    <div class="col-md-6 d-flex flex-wrap mobile-hidden">
+                        <div class="col-6 p-1">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                            </a>
+                        </div>
+                        <div class="col-6 p-1">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                            </a>
+                        </div>
+                        <div class="col-6 p-1">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                            </a>
+                        </div>
+                        <div class="col-6 p-1 position-relative">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                                <div class="overlay">+2</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thông tin khách sạn -->
+                <div class="hotel-details mt-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="hotel-name fs-24 fw-600">Tên Khách Sạn</h2>
+                        <span class="hotel-rating">8.5</span>
+                    </div>
+                    <p class="hotel-location fs-21 fw-400"><i class="fa fa-map-marker-alt"></i> Địa điểm khách sạn</p>
+                    <div class="rating text-warning my-2">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-12">
+                    <div class="product-search bg-white rounded-20 p-4">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-md-2 col-6">
+                                <div class="single-date-picker">
+                                    <i class="fa fa-calendar"></i>&nbsp;
+                                    <span>Ngày bắt đầu</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-6">
+                                <div class="single-date-picker">
+                                    <i class="fa fa-calendar"></i>&nbsp;
+                                    <span>Ngày kết thúc</span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-12">
+                                <div class="guest-picker">
+                                    <i class="fa fa-users"></i>
+                                    <span>1 Phòng - 1 Người lớn - 0 Trẻ em</span>
+                                    <div class="guest-dropdown">
+                                        <div class="guest-item">
+                                            <span>Phòng</span>
+                                            <div class="counter">
+                                                <button class="btn minus">-</button>
+                                                <span class="count">1</span>
+                                                <button class="btn plus">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="guest-item">
+                                            <span>Người lớn</span>
+                                            <div class="counter">
+                                                <button class="btn minus">-</button>
+                                                <span class="count">1</span>
+                                                <button class="btn plus">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="guest-item">
+                                            <span>Trẻ em</span>
+                                            <div class="counter">
+                                                <button class="btn minus">-</button>
+                                                <span class="count">0</span>
+                                                <button class="btn plus">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <select class="select2-location">
+                                    <option value="">Hạng phòng</option>
+                                    <option value="hanoi">Hà Nội</option>
+                                    <option value="hcm">TP.HCM</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-main-color w-100">Chọn phòng</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-prices bg-white rounded-20 p-4 mt-3">
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                    </div>
+                    <div class="product-services bg-white rounded-20 p-4 mt-3">
+                        <h2>Bảng giá</h2>
+                        <div class="rooms-wrapper">
+                            <div class="service-item d-flex align-items-center py-3">
+                                <img src="assets/images/products/product-image.png" alt="Sản phẩm" class="rounded-10">
+
+                                <div class="room-content flex-grow-1 px-3">
+                                    <h5 class="fw-600 fs-18 max-2-lines">Tên sản phẩm</h5>
+                                    <div class="info">
+                                        <div class="price fw-600 fs-18 me-4">
+                                            2.800.000 đ
+                                        </div>
+                                        <div class="fw-500 fs-18 max-people">
+                                            Phòng tối đa 2 người lớn
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <a href="#">
+                                        <i class="fa-solid fa-circle-plus fs-22"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center py-3">
+                                <img src="assets/images/products/product-image.png" alt="Sản phẩm" class="rounded-10">
+
+                                <div class="room-content flex-grow-1 px-3">
+                                    <h5 class="fw-600 fs-18 max-2-lines">Tên sản phẩm</h5>
+                                    <div class="info">
+                                        <div class="price fw-600 fs-18 me-4">
+                                            2.800.000 đ
+                                        </div>
+                                        <div class="fw-500 fs-18 max-people">
+                                            Phòng tối đa 2 người lớn
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <a href="#">
+                                        <i class="fa-solid fa-circle-plus fs-22"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center py-3">
+                                <img src="assets/images/products/product-image.png" alt="Sản phẩm" class="rounded-10">
+
+                                <div class="room-content flex-grow-1 px-3">
+                                    <h5 class="fw-600 fs-18 max-2-lines">Tên sản phẩm</h5>
+                                    <div class="info">
+                                        <div class="price fw-600 fs-18 me-4">
+                                            2.800.000 đ
+                                        </div>
+                                        <div class="fw-500 fs-18 max-people">
+                                            Phòng tối đa 2 người lớn
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <a href="#">
+                                        <i class="fa-solid fa-circle-plus fs-22"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="service-item d-flex align-items-center py-3">
+                                <img src="assets/images/products/product-image.png" alt="Sản phẩm" class="rounded-10">
+
+                                <div class="room-content flex-grow-1 px-3">
+                                    <h5 class="fw-600 fs-18 max-2-lines">Tên sản phẩm</h5>
+                                    <div class="info">
+                                        <div class="price fw-600 fs-18 me-4">
+                                            2.800.000 đ
+                                        </div>
+                                        <div class="fw-500 fs-18 max-people">
+                                            Phòng tối đa 2 người lớn
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <a href="#">
+                                        <i class="fa-solid fa-circle-plus fs-22"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-services-details mt-3">
+                        <h2>Chi tiết</h2>
+                        <div class="swiper product-detail-swiper">
+                            <div class="swiper-wrapper">
+
+                                <!-- Bắt đầu sản phẩm -->
+                                <div class="swiper-slide p-1 p-md-0">
+                                    <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                        <img src="assets/images/products/product-image.png"
+                                            class="img-fluid top-rounded-20" alt="Tên sản phẩm">
+                                        <div class="p-3">
+                                            <h5 class="fw-600 fs-16">
+                                                <a href="product-service-detail.html"
+                                                    class="text-decoration-none text-dark">Tour Đà Nẵng</a>
+                                            </h5>
+                                            <div class="rating text-warning my-2">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="text-muted mb-0 fs-14"><i
+                                                        class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                                </p>
+                                                <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Kết thúc sản phẩm -->
+                                <div class="swiper-slide p-1 p-md-0">
+                                    <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                        <img src="assets/images/products/product-image.png"
+                                            class="img-fluid top-rounded-20" alt="Tên sản phẩm">
+                                        <div class="p-3">
+                                            <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                            <div class="rating text-warning my-2">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="text-muted mb-0 fs-14"><i
+                                                        class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                                </p>
+                                                <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide p-1 p-md-0">
+                                    <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                        <img src="assets/images/products/product-image.png"
+                                            class="img-fluid top-rounded-20" alt="Tên sản phẩm">
+                                        <div class="p-3">
+                                            <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                            <div class="rating text-warning my-2">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="text-muted mb-0 fs-14"><i
+                                                        class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                                </p>
+                                                <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide p-1 p-md-0">
+                                    <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                        <img src="assets/images/products/product-image.png"
+                                            class="img-fluid top-rounded-20" alt="Tên sản phẩm">
+                                        <div class="p-3">
+                                            <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                            <div class="rating text-warning my-2">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="text-muted mb-0 fs-14"><i
+                                                        class="fa-solid fa-map-marker-alt"></i> Đà Nẵng
+                                                </p>
+                                                <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="product-intro bg-white rounded-20 p-4 mt-3 text-center">
+                        <img src="assets/images/products/hotel-intro.png" class="intro-img" alt="intro">
+                        <h3 class="fw-600 fs-20">Furama resort Danang - Thiên Đường Nghỉ Dưỡng Ven Biển</h3>
+                        <div class="fs-16 fw-400 px-4 px-md-5 content">Cùng nhau khám phá Furama resort Danang - khu
+                            nghỉ dưỡng đẳng cấp bên bờ biển cùng với các biệt thự sang trọng, hồ bơi riêng, dịch vụ 5
+                            sao, và trải
+                            nghiệm ẩm thực tuyệt vời.
+                            Đây chính là sự lựa chọn hoàn hảo cho kỳ nghỉ dưỡng tuyệt vời cho gia đình bạn.
+                        </div>
+                        <div class="product-amenities d-flex flex-wrap justify-content-between p-4">
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-reviews bg-white rounded-20 py-4 px-3 px-md-5 mt-3">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <h2>Xếp hạng nhận xét</h2>
+                                <div class="review-point">4,3</div>
+                                <div class="text-muted">Chạm để xếp hạng</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-end">
+                                    <div class="rating-summary">
+                                        <div class="d-flex justify-content-end mb-2">
+                                            <a href="#" class="text-primary small">Xem tất cả</a>
+                                        </div>
+
+                                        <div class="rating-bars">
+                                            <div class="rating-bar">
+                                                <span class="stars">★★★★★</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span class="stars">★★★★</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 15%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span class="stars">★★★</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 3%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span class="stars">★★</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 1%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span class="stars">★</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 0.5%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end mt-2">
+                                            <span class="avg-stars">★★★★★</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reviews">
+                            <div class="review-item rounded-10 mb-3">
+                                <div class="review-name">Quang Anh</div>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="review-detail">Cùng nhau khám phá Furama resort Danang - khu nghỉ dưỡng đẳng
+                                    cấp bên bờ biển cùng với các biệt thự sang trọng, hồ bơi riêng, dịch vụ 5 sao, và
+                                    trải nghiệm
+                                    ẩm thực tuyệt vời
+                                </div>
+
+                            </div>
+                            <div class="review-item rounded-10 mb-3">
+                                <div class="review-name">Quang Anh</div>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="review-detail">Cùng nhau khám phá Furama resort Danang - khu nghỉ dưỡng đẳng
+                                    cấp bên bờ biển cùng với các biệt thự sang trọng, hồ bơi riêng, dịch vụ 5 sao, và
+                                    trải nghiệm
+                                    ẩm thực tuyệt vời
+                                </div>
+
+                            </div>
+                            <div class="review-item rounded-10 mb-3">
+                                <div class="review-name">Quang Anh</div>
+                                <div class="rating text-warning my-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="review-detail">Cùng nhau khám phá Furama resort Danang - khu nghỉ dưỡng đẳng
+                                    cấp bên bờ biển cùng với các biệt thự sang trọng, hồ bơi riêng, dịch vụ 5 sao, và
+                                    trải nghiệm
+                                    ẩm thực tuyệt vời
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-primary">
+                            <i class="fa-solid fa-pen-to-square "></i>
+                            Viết nhận xét
+                        </div>
+                    </div>
+                    <div class="product-blog bg-white rounded-20 py-4 px-3 px-md-5 mt-3">
+                        <div class="mb-3">
+                            <div class="swiper badge-swiper">
+                                <div class="swiper-wrapper">
+                                    <!-- Bắt đầu blog-item -->
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge active">
+                                            Du lịch</a>
+                                    </div>
+                                    <!-- Kết thúc blog-item -->
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                    <div class="swiper-slide p-1 p-md-0">
+                                        <a href="#"
+                                            class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">
+                                            Du lịch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-item rounded-20 bg-white position-relative">
+                            <h2 class="fw-500 fs-20">Tên bài viết</h2>
+                            <div class="blog-item-desc fw-400 fs-16 max-3-lines">
+                                Lorem ipsum odor amet, consectetuer adipiscing elit. Varius erat montes conubia
+                                phasellus dictumst. Scelerisque condimentum dapibus vitae risus libero quisque.
+                                Habitasse
+                                hac condimentum adipiscing risus aptent proin. Eros rutrum maximus ante sodales suscipit
+                                at. Platea conubia interdum aenean donec; porta torquent. Eleifend malesuada
+                                suspendisse rhoncus efficitur sit rutrum. Tincidunt at senectus bibendum amet morbi
+                                porttitor ante per. Nisi sit euismod adipiscing egestas felis commodo massa non. Maximus
+                                quis convallis felis nulla nulla lacus ipsum. Sociosqu semper senectus nostra pulvinar
+                                nibh nascetur. Ut enim id parturient convallis sit magnis. Malesuada porttitor
+                                quisque dolor ultrices fusce dolor ridiculus cursus.
+                            </div>
+                            <div class="blog-item-image w-100 mt-2">
+                                <img src="assets/images/products/product-image.png" alt="blog-image"
+                                    class="w-100 h-100 rounded-10">
+                            </div>
+                            <div class="text-end mt-3">
+                                <a href="blog-detail.html" class="detail"><i
+                                        class="fa-solid fa-circle-plus text-muted fs-20"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="product-total bg-white rounded-20 p-4 mobile-hidden">
+                        <div class="row mb-3">
+                            <div class="col-4 px-0">
+                                <img src="assets/images/products/product-image.png" alt="product" class="product-img">
+                            </div>
+                            <div class="col-8">
+                                <div class="fw-500 fs-16 max-3-lines">Furama resort Danang - Thiên Đường Nghỉ Dưỡng Ven
+                                    Biển</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div class="fs-18 fw-700">Tổng tiền</div>
+                            <div class="fs-18 fw-700">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button class="btn btn-main-color">Đặt ngay</button>
+                        </div>
+                    </div>
+                    <div class="mobile-menu product-page px-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <div class="product-name">
+                                Tên phòng
+                            </div>
+                            <div class="product-price">
+                                2.800.000 đ
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <button class="btn btn-main-color w-100">Đặt ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-4">
+                <!-- Khối Tin tức -->
+                <div class="container py-4">
+                    <h3 class="mb-3 fw-bold">Tin tức mới nhất</h3>
+
+                    <!-- Bộ lọc danh mục -->
+                    <div class="mb-3">
+                        <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge active">Du
+                            lịch</a>
+                        <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">Du
+                            lịch</a>
+                        <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">Khuyến
+                            mãi</a>
+                        <a class="text-decoration-none badge rounded-pill bg-neutral-2 fs-16 fw-400 new-badge">Sự
+                            kiện</a>
+                    </div>
+
+                    <!-- Swiper Tin tức -->
+                    <div class="swiper blog-swiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- Bắt đầu blog-item -->
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="blog-item bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tiêu đề bài viết">
+                                    <div class="p-3">
+                                        <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                        <h5 class="fw-600 fs-16 text-dark mt-2">
+                                            <a href="blog-detail.html" class="text-decoration-none text-dark">Khám phá
+                                                Đà Lạt mùa hoa anh đào</a>
+                                        </h5>
+                                        <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                            25/03/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Kết thúc blog-item -->
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="blog-item bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tiêu đề bài viết">
+                                    <div class="p-3">
+                                        <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                        <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                        <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                            25/03/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="blog-item bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tiêu đề bài viết">
+                                    <div class="p-3">
+                                        <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                        <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                        <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                            25/03/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="blog-item bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tiêu đề bài viết">
+                                    <div class="p-3">
+                                        <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                        <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                        <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                            25/03/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="blog-item bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tiêu đề bài viết">
+                                    <div class="p-3">
+                                        <span class="fs-12 fw-500 text-muted">Du lịch</span>
+                                        <h5 class="fw-600 fs-16 text-dark mt-2">Khám phá Đà Lạt mùa hoa anh đào</h5>
+                                        <p class="text-muted mb-0 fs-12 fw-500"><i class="fa-regular fa-calendar"></i>
+                                            25/03/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-3">
+                <!-- Khối sản phẩm ưu đãi -->
+                <div class="container py-4">
+                    <h3 class="mb-3 fw-bold">Sản phẩm ưu đãi</h3>
+                    <div class="swiper product-swiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- Bắt đầu sản phẩm -->
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tên sản phẩm">
+                                    <div class="p-3">
+                                        <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                        <div class="rating text-warning my-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i>
+                                                Đà Nẵng
+                                            </p>
+                                            <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Kết thúc sản phẩm -->
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tên sản phẩm">
+                                    <div class="p-3">
+                                        <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                        <div class="rating text-warning my-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i>
+                                                Đà Nẵng
+                                            </p>
+                                            <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tên sản phẩm">
+                                    <div class="p-3">
+                                        <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                        <div class="rating text-warning my-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i>
+                                                Đà Nẵng
+                                            </p>
+                                            <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide p-1 p-md-0">
+                                <div class="product-item-v2 bg-white rounded-20 shadow-sm">
+                                    <img src="assets/images/products/product-image.png" class="img-fluid top-rounded-20"
+                                        alt="Tên sản phẩm">
+                                    <div class="p-3">
+                                        <h5 class="fw-600 fs-16">Tour Đà Nẵng</h5>
+                                        <div class="rating text-warning my-2">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="text-muted mb-0 fs-14"><i class="fa-solid fa-map-marker-alt"></i>
+                                                Đà Nẵng
+                                            </p>
+                                            <span class="product-price-badge fs-16 fw-700">2.500.000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="product.html" class="btn btn-main-color px-5">Xem Tất Cả</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-5">
+        <div class="container bg-white text-center rounded-20">
+            <!-- Logo -->
+            <a class="navbar-brand me-3 site-logo fs-41 fw-500 text-dark" href="/">
+                abogo
+            </a>
+
+            <!-- Footer Widgets -->
+            <div class="row justify-content-center">
+                <!-- Cột Widget 1 -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-building fa-fw me-2 footer-icon-color"></i> Giới thiệu</li>
+                        <li><i class="fas fa-briefcase fa-fw me-2 footer-icon-color"></i> Tuyển dụng</li>
+                        <li><i class="fas fa-phone fa-fw me-2 footer-icon-color"></i> Liên hệ</li>
+                    </ul>
+                </div>
+
+                <!-- Cột Widget 2 -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-question-circle fa-fw me-2 footer-icon-color"></i> FAQ</li>
+                        <li><i class="fas fa-shield-alt me-2 fa-fw footer-icon-color"></i> Bảo mật</li>
+                        <li><i class="fas fa-file-contract me-2 fa-fw footer-icon-color"></i> Điều khoản</li>
+                    </ul>
+                </div>
+
+                <!-- Cột Widget 3 -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-plane me-2 fa-fw footer-icon-color"></i> Đặt vé máy bay</li>
+                        <li><i class="fas fa-hotel me-2 fa-fw footer-icon-color"></i> Đặt phòng khách sạn</li>
+                        <li><i class="fas fa-car me-2 fa-fw footer-icon-color"></i> Thuê xe</li>
+                    </ul>
+                </div>
+
+                <!-- Cột Widget 4 (Chứng nhận) -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <div class="d-flex justify-content-center flex-column ps-3">
+                        <img src="assets/images/common/bo-cong-thuong.png" alt="Bộ Công Thương" class="me-2" width="80">
+                        <img src="assets/images/common/DMCA.png" alt="DMCA" width="80">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/b726da8c6e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="assets/libraries/lightGallery/js/lightgallery.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

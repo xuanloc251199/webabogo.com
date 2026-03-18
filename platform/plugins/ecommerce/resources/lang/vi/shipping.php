@@ -1,0 +1,43 @@
+<?php
+
+return [
+    'name' => 'Phí vận chuyển',
+    'shipping' => 'Vận chuyển',
+    'title' => 'Title',
+    'country' => 'Quốc gia',
+    'state' => 'State',
+    'city' => 'City',
+    'amount' => 'Amount',
+    'enable' => 'Enable',
+    'enabled' => 'Enabled',
+    'disable' => 'Disable',
+    'disabled' => 'Disabled',
+    'create_shipping' => 'Create a shipping',
+    'edit_shipping' => 'Edit shipping #',
+    'status' => 'Status',
+    'shipping_methods' => 'Phương thức vận chuyển',
+    'create_shipping_method' => 'Tạo phương thức vận chuyển',
+    'edit_shipping_method' => 'Sửa phương thức vận chuyển',
+    'add_shipping_region' => 'Thêm khu vực vận chuyển',
+    'methods' => [
+        'default' => 'Mặc định',
+    ],
+    'statuses' => [
+        'not_approved' => 'Chưa được phê duyệt',
+        'approved' => 'Đã được phê duyệt',
+        'picking' => 'Đang lấy hàng',
+        'delay_picking' => 'Trì hoãn việc lấy hàng',
+        'picked' => 'Đã lấy hàng',
+        'not_picked' => 'Không lấy hàng',
+        'delivering' => 'Đang giao hàng',
+        'delivered' => 'Đã giao hàng',
+        'not_delivered' => 'Chưa giao hàng',
+        'audited' => 'Đã kiểm định',
+        'canceled' => 'Đã hủy',
+        'pending' => 'Chờ xử lý',
+    ],
+    'cod_statuses' => [
+        'pending' => 'Chờ xử lý',
+        'completed' => 'Hoàn thành',
+    ],
+];

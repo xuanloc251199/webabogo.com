@@ -1,0 +1,11 @@
+{
+    "id": "botble/extensions",
+    "name": "Extensions",
+    "namespace": "Botble\\Extensions\\",
+    "provider": "Botble\\Extensions\\Providers\\ExtensionsServiceProvider",
+    "author": "Tr?nh Công",
+    "url": "",
+    "version": "1.0.0",
+    "description": "Ti?n ích c?a product",
+    "minimum_core_version": "7.3.1"
+}

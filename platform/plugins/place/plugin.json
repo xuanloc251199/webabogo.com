@@ -1,0 +1,11 @@
+{
+    "id": "mistudio/place",
+    "name": "Place",
+    "namespace": "Botble\\Place\\",
+    "provider": "Botble\\Place\\Providers\\PlaceServiceProvider",
+    "author": "",
+    "url": "",
+    "version": "1.0.0",
+    "description": "",
+    "minimum_core_version": "7.3.1"
+}

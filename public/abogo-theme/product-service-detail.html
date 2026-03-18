@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/libraries/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/libraries/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light shadow">
+            <div class="container d-flex justify-content-between align-items-center">
+                <!-- Bên trái -->
+                <div class="d-flex align-items-center">
+                    <!-- Logo -->
+                    <a class="navbar-brand me-3 site-logo fs-41 fw-500 text-dark" href="index.html">
+                        abogo
+                    </a>
+
+                    <!-- Ô chọn địa điểm -->
+                    <select class="form-select select2-location bg-gray">
+                        <option value="1" selected>Hà Nội</option>
+                        <option value="2">TP HCM</option>
+                        <option value="3">Đà Nẵng</option>
+                    </select>
+
+                    <!-- Ô nhập từ khóa tìm kiếm -->
+                    <div class="input-group ms-2">
+                        <span class="input-group-text bg-gray border-end-0">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control bg-gray border-start-0" placeholder="Tìm kiếm">
+                    </div>
+                </div>
+
+                <!-- Bên phải -->
+                <div class="d-flex align-items-center">
+                    <!-- Chọn ngôn ngữ -->
+                    <div class="dropdown me-1">
+                        <button class="btn dropdown-toggle d-flex align-items-center" type="button"
+                            data-bs-toggle="dropdown">
+                            <div class="mobile-hidden">
+                                <img src="assets/images/svg/vn.svg" alt="VN" height="20" class="me-1 "> VIE
+                            </div>
+                            <div class="desktop-hidden">
+                                <i class="fa-solid fa-globe fs-22"></i>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><img src="assets/images/svg/vn.svg" alt="ENG"
+                                        height="20" class="me-1"> ENG</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="assets/images/svg/vn.svg" alt="FRA"
+                                        height="20" class="me-1"> FRA</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Icon giỏ hàng -->
+                    <a href="#" class="me-3 position-relative">
+                        <i class="fa-solid fa-cart-plus text-dark fs-22"></i>
+                    </a>
+
+                    <!-- Icon thông báo -->
+                    <a href="#" class="me-3 position-relative">
+                        <i class="fa-solid fa-bell text-dark fs-22"></i>
+                    </a>
+
+                    <!-- Icon menu (Hiện navbar khi ấn) -->
+                    <button class="btn mobile-hidden" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasMenu">
+                        <img src="assets/images/svg/menu.svg" alt="menu-icon">
+                    </button>
+
+                    <!-- Offcanvas Menu -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title">Menu</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block py-2">Trang chủ</a></li>
+                                <li><a href="#" class="d-block py-2">Giới thiệu</a></li>
+                                <li><a href="#" class="d-block py-2">Dịch vụ</a></li>
+                                <li><a href="#" class="d-block py-2">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Nút Đăng nhập / Đăng ký -->
+                    <div class="ms-3 d-none d-lg-block">
+                        <a href="#" class="fw-600 fs-14 text-dark text-decoration-none">Đăng nhập</a>
+                        <span>/</span>
+                        <a href="#" class="fw-600 fs-14 text-dark text-decoration-none">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <nav style="--bs-breadcrumb-divider: '>';" class="container my-3" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Khách sạn A</li>
+        </ol>
+    </nav>
+
+    <main>
+        <div class="product-service-detail container">
+            <div class="feature-img">
+                <img src="assets/images/products/product-image.png" class="rounded-20" alt="product">
+            </div>
+            <h1 class="fw-600 fs-24 mt-2">Furama Villa 03 Bedrooms Garden View</h1>
+            <div class="detail d-flex">
+                <div class="detail-item me-3">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>2 giường</span>
+                </div>
+                <div class="detail-item me-3">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>2 giường</span>
+                </div>
+                <div class="detail-item me-3">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>2 giường</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-9">
+                    <div class="product-intro bg-white rounded-20 p-4 mt-3 text-center">
+                        <img src="assets/images/products/hotel-intro.png" class="intro-img" alt="intro">
+                        <h3 class="fw-600 fs-20">Furama resort Danang - Thiên Đường Nghỉ Dưỡng Ven Biển</h3>
+                        <div class="fs-16 fw-400">Cùng nhau khám phá Furama resort Danang - khu nghỉ dưỡng đẳng cấp bên
+                            bờ biển cùng với các biệt thự sang trọng, hồ bơi riêng, dịch vụ 5 sao, và trải
+                            nghiệm ẩm thực tuyệt vời.
+                            Đây chính là sự lựa chọn hoàn hảo cho kỳ nghỉ dưỡng tuyệt vời cho gia đình bạn.
+                        </div>
+                        <div class="product-amenities d-flex flex-wrap justify-content-between p-4">
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                            <div class="amenity-item col-md-3 justify-content-center d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="assets/images/products/amenity.png" alt="amenity">
+                                </div>
+                                <div class="name">View garden</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="product-total bg-white rounded-20 p-4 mt-3 mobile-hidden">
+                        <div class="row mb-3">
+                            <div class="col-4 px-0">
+                                <img src="assets/images/products/product-image.png" alt="product" class="product-img">
+                            </div>
+                            <div class="col-8">
+                                <div class="fw-500 fs-16 max-3-lines">Furama resort Danang - Thiên Đường Nghỉ Dưỡng Ven
+                                    Biển</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="fs-16 fw-500">Giá 1 đêm</div>
+                            <div class="fs-16 fw-500">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div class="fs-18 fw-700">Tổng tiền</div>
+                            <div class="fs-18 fw-700">2.800.00 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button class="btn btn-main-color">Đặt ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 col-md-5 mb-3">
+                    <div class="product-service-calendar d-flex flex-column h-100 bg-white rounded-20 p-3"
+                        id="product-service-calendar"></div>
+                </div>
+                <div class="col-12 col-md-7">
+                    <div class="d-flex flex-wrap product-service-images">
+                        <div class="col-6 p-1">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                            </a>
+                        </div>
+                        <div class="col-6 p-1">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                            </a>
+                        </div>
+                        <div class="col-6 p-1">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                            </a>
+                        </div>
+                        <div class="col-6 p-1 position-relative">
+                            <a href="assets/images/products/product-image.png"
+                                class="gallery-item d-block position-relative">
+                                <img src="assets/images/products/product-image.png" alt="Hotel Image"
+                                    class="img-fluid rounded-10">
+                                <div class="overlay">+2</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6 col-12 my-3">
+                    <div class="policies p-4 bg-white rounded-20">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="fw-600 fs-22">Chính sách</h2>
+                            <a href="#">Xem thêm</a>
+                        </div>
+                        <div class="content">
+                            Bữa sáng ăn buffet tại khách sạn. Các bữa ăn Á và Âu kết hợp đồ địa phương đặc trưng theo
+                            tiêu chuẩn trong suốt hành trình . Mức ăn 20-25$/bữa/ khách. Bảo hiểm du lịch của
+                            Tập đoàn AIG với mức bồi thường tối đa lên đến 50,000 usd/khách/vụ (Độ tuổi dưới 75 tuổi)
+                            Giá tour đã bao gồm vé theo quan các địa điểm theo lịch trình đính kèm như vé thăm
+                            quan vào cửa thứ nhất các điểm. Các điểm khác thăm quan bên ngoài. Quà tặng cho khách hàng:
+                            Vỏ hộ chiếu, mũ, thẻ thông tin khách sạn, tag hành lý, ảnh để bàn. Lệ phí visa và
+                            phí dịch thuật Maroc
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 my-3">
+                    <div class="policies p-4 bg-white rounded-20">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="fw-600 fs-22">Chính sách</h2>
+                            <a href="#">Xem thêm</a>
+                        </div>
+                        <div class="content">
+                            Bữa sáng ăn buffet tại khách sạn. Các bữa ăn Á và Âu kết hợp đồ địa phương đặc trưng theo
+                            tiêu chuẩn trong suốt hành trình . Mức ăn 20-25$/bữa/ khách. Bảo hiểm du lịch của
+                            Tập đoàn AIG với mức bồi thường tối đa lên đến 50,000 usd/khách/vụ (Độ tuổi dưới 75 tuổi)
+                            Giá tour đã bao gồm vé theo quan các địa điểm theo lịch trình đính kèm như vé thăm
+                            quan vào cửa thứ nhất các điểm. Các điểm khác thăm quan bên ngoài. Quà tặng cho khách hàng:
+                            Vỏ hộ chiếu, mũ, thẻ thông tin khách sạn, tag hành lý, ảnh để bàn. Lệ phí visa và
+                            phí dịch thuật Maroc
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-5 py-3">
+        <div class="container bg-white text-center rounded-20">
+            <!-- Logo -->
+            <a class="navbar-brand me-3 site-logo fs-41 fw-500 text-dark" href="/">
+                abogo
+            </a>
+
+            <!-- Footer Widgets -->
+            <div class="row justify-content-center px-1 px-md-5 ">
+                <!-- Cột Widget 1 -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <ul class="list-unstyled text-start mx-auto" style="max-width: 200px;">
+                        <li><i class="fas fa-building me-2 footer-icon-color"></i> Giới thiệu</li>
+                        <li><i class="fas fa-briefcase me-2 footer-icon-color"></i> Tuyển dụng</li>
+                        <li><i class="fas fa-phone me-2 footer-icon-color"></i> Liên hệ</li>
+                    </ul>
+                </div>
+
+                <!-- Cột Widget 2 -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <ul class="list-unstyled text-start mx-auto" style="max-width: 200px;">
+                        <li><i class="fas fa-question-circle me-2 footer-icon-color"></i> FAQ</li>
+                        <li><i class="fas fa-shield-alt me-2 footer-icon-color"></i> Bảo mật</li>
+                        <li><i class="fas fa-file-contract me-2 footer-icon-color"></i> Điều khoản</li>
+                    </ul>
+                </div>
+
+                <!-- Cột Widget 3 -->
+                <div class="col-6 col-md-3 footer-widget">
+                    <ul class="list-unstyled text-start mx-auto" style="max-width: 200px;">
+                        <li><i class="fas fa-plane me-2 footer-icon-color"></i> Đặt vé máy bay</li>
+                        <li><i class="fas fa-hotel me-2 footer-icon-color"></i> Đặt phòng khách sạn</li>
+                        <li><i class="fas fa-car me-2 footer-icon-color"></i> Thuê xe</li>
+                    </ul>
+                </div>
+
+                <!-- Cột Widget 4 (Chứng nhận) -->
+                <div class="col-6 col-md-3 footer-widget text-center">
+                    <div class="d-flex justify-content-center flex-column">
+                        <img src="assets/images/common/bo-cong-thuong.png" alt="Bộ Công Thương" class="me-2" width="80">
+                        <img src="assets/images/common/DMCA.png" alt="DMCA" width="80">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/b726da8c6e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="assets/libraries/lightGallery/js/lightgallery.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

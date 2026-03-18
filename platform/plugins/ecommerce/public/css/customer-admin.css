@@ -1,0 +1,112 @@
+.customer-reviews-table .widget-body{margin-top:50px}
+
+/* Social Media Section Styling */
+.form-group h5.text-info {
+    border-bottom: 2px solid #17a2b8;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-group h5.text-info i {
+    color: #17a2b8;
+}
+
+/* Social Media Input Fields */
+input[name*="_url"] {
+    border-left: 4px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+input[name="facebook_url"] {
+    border-left-color: #1877f2;
+}
+
+input[name="instagram_url"] {
+    border-left-color: #e4405f;
+}
+
+input[name="youtube_url"] {
+    border-left-color: #ff0000;
+}
+
+input[name="tiktok_url"] {
+    border-left-color: #000000;
+}
+
+input[name="twitter_url"] {
+    border-left-color: #1da1f2;
+}
+
+input[name="linkedin_url"] {
+    border-left-color: #0077b5;
+}
+
+input[name*="_url"]:focus {
+    border-left-width: 6px;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+}
+
+/* Labels for social media fields */
+label[for*="_url"] {
+    font-weight: 600;
+    color: #495057;
+}
+
+label[for="facebook_url"]:before {
+    content: "\f09a";
+    font-family: "Font Awesome 5 Brands";
+    margin-right: 8px;
+    color: #1877f2;
+}
+
+label[for="instagram_url"]:before {
+    content: "\f16d";
+    font-family: "Font Awesome 5 Brands";
+    margin-right: 8px;
+    color: #e4405f;
+}
+
+label[for="youtube_url"]:before {
+    content: "\f167";
+    font-family: "Font Awesome 5 Brands";
+    margin-right: 8px;
+    color: #ff0000;
+}
+
+label[for="tiktok_url"]:before {
+    content: "\e07b";
+    font-family: "Font Awesome 5 Brands";
+    margin-right: 8px;
+    color: #000000;
+}
+
+label[for="twitter_url"]:before {
+    content: "\f099";
+    font-family: "Font Awesome 5 Brands";
+    margin-right: 8px;
+    color: #1da1f2;
+}
+
+label[for="linkedin_url"]:before {
+    content: "\f0e1";
+    font-family: "Font Awesome 5 Brands";
+    margin-right: 8px;
+    color: #0077b5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-group h5.text-info {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    input[name*="_url"] {
+        border-left-width: 3px;
+    }
+
+    input[name*="_url"]:focus {
+        border-left-width: 4px;
+    }
+}

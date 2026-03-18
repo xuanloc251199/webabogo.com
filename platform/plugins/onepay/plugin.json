@@ -1,0 +1,11 @@
+{
+    "id": "botble/onepay",
+    "name": "Onepay",
+    "namespace": "Botble\\Onepay\\",
+    "provider": "Botble\\Onepay\\Providers\\OnepayServiceProvider",
+    "author": "Trinh Cong",
+    "url": "",
+    "version": "1.0.0",
+    "description": "",
+    "minimum_core_version": "7.3.1"
+}
