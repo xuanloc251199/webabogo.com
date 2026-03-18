@@ -6,23 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $keyword = trim((string) $request->get('keyword', ''));
-        $type = trim((string) $request->get('type', ''));
-        $paginate = (int) $request->get('paginate', 0);
         $perPage = (int) $request->get('per_page', 10);
         $page = (int) $request->get('page', 1);
+        $keyword = trim((string) $request->get('keyword', ''));
+        $type = trim((string) $request->get('type', ''));
 
         if ($perPage <= 0) {
             $perPage = 10;
         }
 
-        if ($perPage > 100) {
-            $perPage = 100;
+        if ($perPage > 50) {
+            $perPage = 50;
+        }
+
+        if ($page <= 0) {
+            $page = 1;
         }
 
         $query = DB::table('ec_products as p')
@@ -31,6 +35,7 @@ class ProductController extends Controller
                     ->where('s.reference_type', '=', 'Botble\\Ecommerce\\Models\\Product');
             })
             ->where('p.is_variation', 0)
+            ->where('p.status', 'published')
             ->select([
                 'p.id',
                 'p.name',
@@ -38,74 +43,51 @@ class ProductController extends Controller
                 'p.price',
                 'p.sale_price',
                 'p.image',
+                'p.thumbnail',
                 'p.images',
                 'p.description',
                 'p.content',
+                'p.address',
+                'p.type',
+                'p.level_star',
                 'p.status',
                 'p.created_at',
                 's.key as slug',
-            ])
-            ->orderByDesc('p.id');
+            ]);
 
         if ($keyword !== '') {
-            $query->where('p.name', 'like', '%' . $keyword . '%');
-        }
-
-        if ($type !== '') {
-            $query->where(function ($subQuery) use ($type) {
-                $normalizedType = mb_strtolower($type);
-
-                if ($normalizedType === 'tour') {
-                    $subQuery->where('p.name', 'like', '%tour%')
-                        ->orWhere('s.key', 'like', '%tour%');
-                } elseif ($normalizedType === 'villa') {
-                    $subQuery->where('p.name', 'like', '%villa%')
-                        ->orWhere('s.key', 'like', '%villa%');
-                } elseif ($normalizedType === 'hotel') {
-                    $subQuery->where('p.name', 'like', '%hotel%')
-                        ->orWhere('p.name', 'like', '%khách sạn%')
-                        ->orWhere('p.name', 'like', '%khach san%')
-                        ->orWhere('s.key', 'like', '%hotel%')
-                        ->orWhere('s.key', 'like', '%khach-san%');
-                }
+            $query->where(function ($subQuery) use ($keyword) {
+                $subQuery->where('p.name', 'like', "%{$keyword}%")
+                    ->orWhere('p.description', 'like', "%{$keyword}%")
+                    ->orWhere('p.content', 'like', "%{$keyword}%")
+                    ->orWhere('p.address', 'like', "%{$keyword}%")
+                    ->orWhere('s.key', 'like', "%{$keyword}%");
             });
         }
 
-        if ($paginate === 1) {
-            $products = $query->paginate($perPage, ['*'], 'page', $page);
-
-            $items = collect($products->items())
-                ->map(function ($item) {
-                    return $this->transformListItem($item);
-                })
-                ->values();
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Products fetched successfully.',
-                'data' => $items,
-                'pagination' => [
-                    'current_page' => $products->currentPage(),
-                    'per_page' => $products->perPage(),
-                    'total' => $products->total(),
-                    'last_page' => $products->lastPage(),
-                ],
-            ]);
+        if ($type !== '') {
+            $query->where('p.type', mb_strtolower($type));
         }
 
-        $rows = $query->get();
+        $total = (clone $query)->count('p.id');
 
-        $items = collect($rows)
-            ->map(function ($item) {
-                return $this->transformListItem($item);
-            })
+        $items = $query
+            ->orderByDesc('p.id')
+            ->forPage($page, $perPage)
+            ->get()
+            ->map(fn($item) => $this->transformListItem($item))
             ->values();
 
         return response()->json([
             'success' => true,
             'message' => 'Products fetched successfully.',
-            'total' => $items->count(),
             'data' => $items,
+            'meta' => [
+                'current_page' => $page,
+                'per_page' => $perPage,
+                'total' => $total,
+                'last_page' => (int) ceil($total / $perPage),
+            ],
         ]);
     }
 
@@ -117,6 +99,7 @@ class ProductController extends Controller
                     ->where('s.reference_type', '=', 'Botble\\Ecommerce\\Models\\Product');
             })
             ->where('p.is_variation', 0)
+            ->where('p.status', 'published')
             ->where('s.key', $slug)
             ->select([
                 'p.id',
@@ -125,12 +108,17 @@ class ProductController extends Controller
                 'p.price',
                 'p.sale_price',
                 'p.image',
+                'p.thumbnail',
                 'p.images',
                 'p.description',
                 'p.content',
+                'p.address',
+                'p.type',
+                'p.level_star',
                 'p.status',
                 'p.created_at',
-                'p.updated_at',
+                'p.views',
+                'p.is_featured',
                 's.key as slug',
             ])
             ->first();
@@ -139,32 +127,109 @@ class ProductController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Product not found.',
-                'data' => null,
             ], 404);
         }
 
+        $gallery = $this->parseGallery($product->images ?? null);
         $meta = $this->getProductMeta((int) $product->id);
+
+        $categoryRows = DB::table('ec_product_category_product as pcp')
+            ->join('ec_product_categories as c', 'c.id', '=', 'pcp.category_id')
+            ->leftJoin('slugs as s', function ($join) {
+                $join->on('s.reference_id', '=', 'c.id')
+                    ->where('s.reference_type', '=', 'Botble\\Ecommerce\\Models\\ProductCategory');
+            })
+            ->where('pcp.product_id', $product->id)
+            ->where('c.status', 'published')
+            ->select([
+                'c.id',
+                'c.name',
+                'c.description',
+                'c.image',
+                'c.icon_image',
+                'c.icon',
+                's.key as slug',
+            ])
+            ->orderByDesc('c.id')
+            ->get()
+            ->map(fn($item) => [
+                'id' => (int) $item->id,
+                'name' => $item->name,
+                'slug' => $item->slug,
+                'description' => $item->description,
+                'image' => $this->formatImageUrl($item->image ?: $item->icon_image ?: $item->icon),
+                'icon' => $this->formatImageUrl($item->icon_image ?: $item->icon ?: $item->image),
+            ])
+            ->values();
+
+        $relatedProducts = DB::table('ec_product_category_product as pcp')
+            ->join('ec_product_category_product as rel_pcp', 'rel_pcp.category_id', '=', 'pcp.category_id')
+            ->join('ec_products as p', 'p.id', '=', 'rel_pcp.product_id')
+            ->leftJoin('slugs as s', function ($join) {
+                $join->on('s.reference_id', '=', 'p.id')
+                    ->where('s.reference_type', '=', 'Botble\\Ecommerce\\Models\\Product');
+            })
+            ->where('pcp.product_id', $product->id)
+            ->where('rel_pcp.product_id', '!=', $product->id)
+            ->where('p.is_variation', 0)
+            ->where('p.status', 'published')
+            ->select([
+                'p.id',
+                'p.name',
+                'p.sku',
+                'p.price',
+                'p.sale_price',
+                'p.image',
+                'p.thumbnail',
+                'p.images',
+                'p.description',
+                'p.content',
+                'p.address',
+                'p.type',
+                'p.level_star',
+                'p.status',
+                'p.created_at',
+                's.key as slug',
+            ])
+            ->distinct()
+            ->orderByDesc('p.id')
+            ->limit(8)
+            ->get()
+            ->map(fn($item) => $this->transformListItem($item))
+            ->values();
 
         return response()->json([
             'success' => true,
-            'message' => 'Product fetched successfully.',
+            'message' => 'Product detail fetched successfully.',
             'data' => [
-                'id' => $product->id,
+                'id' => (int) $product->id,
                 'name' => $product->name,
                 'slug' => $product->slug,
                 'sku' => $product->sku,
-                'product_type' => $this->guessProductType($product->name, $product->slug),
+                'product_type' => $product->type ?? 'product',
                 'price' => (float) ($product->price ?? 0),
                 'sale_price' => (float) ($product->sale_price ?? 0),
-                'image' => $this->formatImageUrl($product->image),
-                'gallery' => $this->parseGallery($product->images),
+                'display_price' => (float) (($product->sale_price ?: $product->price) ?? 0),
+                'thumbnail' => $this->resolveThumbnail(
+                    $product->thumbnail ?? null,
+                    $product->image ?? null,
+                    $gallery,
+                ),
+                'image' => $this->formatImageUrl($product->image ?? null)
+                    ?? $this->resolveThumbnail($product->thumbnail ?? null, $product->image ?? null, $gallery),
+                'gallery' => $gallery,
                 'description' => $product->description,
                 'content' => $product->content,
+                'location' => $product->address ?? '',
+                'rating' => (int) ($product->level_star ?? 0),
+                'views' => (int) ($product->views ?? 0),
+                'is_featured' => (bool) ($product->is_featured ?? false),
                 'status' => $product->status,
+                'created_at' => $product->created_at,
                 'meta' => [
                     'policy' => $meta['policy'] ?? null,
                     'rule' => $meta['rule'] ?? null,
-                    'beds' => $meta['beds'] ?? null,
+                    'beds' => isset($meta['beds']) ? (int) $meta['beds'] : 0,
                     'max_adults' => isset($meta['max_adults']) ? (int) $meta['max_adults'] : 0,
                     'max_children' => isset($meta['max_children']) ? (int) $meta['max_children'] : 0,
                     'children_surplus_fee' => isset($meta['children_surplus_fee']) ? (float) $meta['children_surplus_fee'] : 0,
@@ -172,24 +237,35 @@ class ProductController extends Controller
                     'service_fee' => isset($meta['serviceFee']) ? (float) $meta['serviceFee'] : 0,
                     'size' => $meta['size'] ?? null,
                 ],
-                'created_at' => $product->created_at,
-                'updated_at' => $product->updated_at,
+                'categories' => $categoryRows,
+                'related_products' => $relatedProducts,
             ],
         ]);
     }
 
     private function transformListItem(object $item): array
     {
+        $gallery = $this->parseGallery($item->images ?? null);
+        $thumbnail = $this->resolveThumbnail(
+            $item->thumbnail ?? null,
+            $item->image ?? null,
+            $gallery,
+        );
+
         return [
-            'id' => $item->id,
+            'id' => (int) $item->id,
             'name' => $item->name,
             'slug' => $item->slug,
             'sku' => $item->sku,
-            'product_type' => $this->guessProductType($item->name, $item->slug),
+            'product_type' => $item->type ?? 'product',
             'price' => (float) ($item->price ?? 0),
             'sale_price' => (float) ($item->sale_price ?? 0),
-            'image' => $this->formatImageUrl($item->image),
-            'description' => $item->description,
+            'thumbnail' => $thumbnail,
+            'image' => $this->formatImageUrl($item->image ?? null) ?? $thumbnail,
+            'gallery' => $gallery,
+            'location' => $item->address ?? '',
+            'rating' => (int) ($item->level_star ?? 0),
+            'description' => Str::limit(strip_tags((string) ($item->description ?? '')), 120),
             'status' => $item->status,
             'created_at' => $item->created_at,
         ];
@@ -222,33 +298,22 @@ class ProductController extends Controller
 
         return collect($decoded)
             ->filter()
-            ->map(fn ($item) => $this->formatImageUrl($item))
+            ->map(fn($item) => $this->formatImageUrl($item))
             ->values()
             ->all();
     }
 
-    private function guessProductType(?string $name, ?string $slug): string
+    private function resolveThumbnail(?string $thumbnail, ?string $image, array $gallery): ?string
     {
-        $text = mb_strtolower(trim(($name ?? '') . ' ' . ($slug ?? '')));
-
-        if (str_contains($text, 'tour')) {
-            return 'tour';
+        if ($thumbnail) {
+            return $this->formatImageUrl($thumbnail);
         }
 
-        if (str_contains($text, 'villa')) {
-            return 'villa';
+        if ($image) {
+            return $this->formatImageUrl($image);
         }
 
-        if (
-            str_contains($text, 'hotel') ||
-            str_contains($text, 'khach-san') ||
-            str_contains($text, 'khách sạn') ||
-            str_contains($text, 'khach san')
-        ) {
-            return 'hotel';
-        }
-
-        return 'product';
+        return $gallery[0] ?? null;
     }
 
     private function formatImageUrl(?string $image): ?string
@@ -257,10 +322,17 @@ class ProductController extends Controller
             return null;
         }
 
+        $image = trim($image);
+
         if (str_starts_with($image, 'http://') || str_starts_with($image, 'https://')) {
             return $image;
         }
 
-        return url('storage/' . ltrim($image, '/'));
+        $base = rtrim(
+            config('app.media_base_url', env('MEDIA_BASE_URL', 'https://storage.mistudio.asia/abogo_travel-9211576546')),
+            '/'
+        );
+
+        return $base . '/' . ltrim($image, '/');
     }
 }
