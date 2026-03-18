@@ -51,14 +51,21 @@ class CategoryController extends Controller
 
     private function formatImageUrl(?string $image): ?string
     {
-        if (! $image) {
+        if (!$image) {
             return null;
         }
+
+        $image = trim($image);
 
         if (str_starts_with($image, 'http://') || str_starts_with($image, 'https://')) {
             return $image;
         }
 
-        return url('storage/' . ltrim($image, '/'));
+        $base = rtrim(
+            config('app.media_base_url', env('MEDIA_BASE_URL', 'https://storage.mistudio.asia/abogo_travel-9211576546')),
+            '/'
+        );
+
+        return $base . '/' . ltrim($image, '/');
     }
 }
