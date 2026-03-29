@@ -32,10 +32,16 @@ Route::prefix('v1')->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/products', [ProductController::class, 'index']);
-    Route::get('/{slug}', [ProductController::class, 'show'])
-        ->where('slug', '^(?!ping$|home$|categories$|products$|news$|auth$).+');
-    Route::get('/products/{slug}/calendar', [ProductController::class, 'calendar']);
-    Route::post('/products/{slug}/booking-preview', [ProductController::class, 'bookingPreview']);
+    Route::get('/{slug}', [ProductController::class, 'show']);
+    Route::get('/{slug}/calendar', [ProductController::class, 'calendar']);
+    Route::post('/{slug}/booking-preview', [ProductController::class, 'bookingPreview']);
+
+
+    // Route::get('/{slug}', [ProductController::class, 'show'])
+    //     ->where('slug', '^(?!ping$|home$|categories$|products$|news$|auth$).+');
+
+    // Route::get('/{slug}/calendar', [ProductController::class, 'calendar']);
+    // Route::post('/{slug}/booking-preview', [ProductController::class, 'bookingPreview']);
 
     Route::get('/news', [NewsController::class, 'index']);
     Route::get('/news/{slug}', [NewsController::class, 'show']);

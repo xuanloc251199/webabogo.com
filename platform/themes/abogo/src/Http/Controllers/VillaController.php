@@ -24,7 +24,7 @@ class VillaController extends PublicController
     public function addVillaToCart(CartRequest $request)
     {
 
-//        try {
+        //        try {
         if (!auth("customer")->check()) {
 
             return $this
@@ -50,7 +50,7 @@ class VillaController extends PublicController
             $endDate = Carbon::parse($request->input('end_date', Carbon::now()->addDay()->toDateString()));
         }
 
-        $period = CarbonPeriod::create($startDate, $endDate->copy()->subDay());
+        $period = CarbonPeriod::create($startDate, $endDate);
 
         $dates = [];
         foreach ($period as $date) {
@@ -78,12 +78,12 @@ class VillaController extends PublicController
         $children = MetaBox::getMetaData($product, 'max_children', true) ?: 0;
         $request->merge(['qty' => 1]);
 
-//Dịch vụ đi kèm
+        //Dịch vụ đi kèm
         $services = $product->services->toArray();
         $serviceIds = array_column($services, 'id');
 
         $servicesData = $request->input("services", []);
-        $totalServicePrice = 0;//Tổng tiền dịch vụ
+        $totalServicePrice = 0; //Tổng tiền dịch vụ
         if (is_array($servicesData)) {
             foreach ($servicesData as $serviceId => $quantity) {
                 if (in_array($serviceId, $serviceIds)) {
@@ -154,28 +154,27 @@ class VillaController extends PublicController
                 'total_product_cart' => Cart::instance('cart')->rawTotalQuantity(),
                 ...$responseData,
             ]);
-//        } catch (\Exception $exception) {
-//            return $this
-//                ->httpResponse()
-//                ->setError()
-//                ->setMessage($exception->getMessage());
-//        }
+        //        } catch (\Exception $exception) {
+        //            return $this
+        //                ->httpResponse()
+        //                ->setError()
+        //                ->setMessage($exception->getMessage());
+        //        }
 
     }
 
-//    Hiên thị gi theo ngày của villa
+    //    Hiên thị gi theo ngày của villa
     public function getProductPriceByCalendar(
         Request          $request,
         BaseHttpResponse $response,
         ProductInterface $productRepository
-    ): BaseHttpResponse
-    {
+    ): BaseHttpResponse {
         $product = $productRepository->findById($request->input('product_id'));
         return $response->setData($this->get_data_show_calendar_product($product->id));
     }
 
 
-//    Cập nht lại ngày nhận và trả phòng
+    //    Cập nht lại ngày nhận và trả phòng
     public function updateCartItem($product_id, $rowId, Request $request)
     {
         $cartItem = Cart::instance('cart')->get($rowId);
@@ -207,7 +206,7 @@ class VillaController extends PublicController
         $startDate = Carbon::parse($request->input('start_date'));
         $endDate = Carbon::parse($request->input('end_date'));
 
-        $period = CarbonPeriod::create($startDate, $endDate->copy()->subDay());
+        $period = CarbonPeriod::create($startDate, $endDate);
 
         $dates = [];
         foreach ($period as $date) {
@@ -281,7 +280,7 @@ class VillaController extends PublicController
         return Cart::instance('cart')->content()->toArray();
     }
 
-//Lấy ra danh sách giá của ngày để hiển thị ở calendar
+    //Lấy ra danh sách giá của ngày để hiển thị ở calendar
     public function get_data_show_calendar_product($product_id): array
     {
         $startDate = Carbon::now();
@@ -329,7 +328,7 @@ class VillaController extends PublicController
             ->values()->toArray();
     }
 
-//Lấy ra các giá của các ngày đã chọn của villa
+    //Lấy ra các giá của các ngày đã chọn của villa
     public function get_price_days_choose_product_villa($product_id, $startDate, $endDate, $number_room = 1): array
     {
         $availableDates = ProductVariationItem::query()
@@ -339,8 +338,8 @@ class VillaController extends PublicController
             ->join('ec_products', 'ec_products.id', '=', 'ec_product_variations.product_id')
             ->distinct()
             ->where('ec_product_variations.configurable_product_id', $product_id)
-            ->whereDate('ec_product_attributes.title', ">=", $startDate)
-            ->whereDate('ec_product_attributes.title', "<", $endDate)
+            ->whereDate('ec_product_attributes.title', '>=', $startDate)
+            ->whereDate('ec_product_attributes.title', '<=', $endDate)
             ->select([
                 'ec_product_attributes.*',
                 'ec_product_attribute_sets.display_layout as attribute_set_display_layout',
