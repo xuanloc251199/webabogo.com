@@ -97,7 +97,7 @@ Theme::registerRoutes(function () {
                 'uses' => 'ReviewController@destroy',
             ])->wherePrimaryKey();
 
-            Route::get(SlugHelper::getPrefix(Product::class, 'products') . '/{slug}/review', [
+            Route::get(SlugHelper::getPrefix(Product::class, '') . '/{slug}/review', [
                 'uses' => 'ReviewController@getProductReview',
                 'as' => 'public.product.review',
                 'middleware' => 'customer',
