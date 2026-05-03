@@ -1,3 +1,19 @@
+{{-- Mobile-only hero header (Liquid Glass page title) — design polish, no DB content --}}
+<div class="mobile-hero desktop-hidden">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="mobile-hero-title mb-0">Sản phẩm</h1>
+        @if (auth('customer')->check())
+            <a href="{{ route('customer.overview') }}" class="mobile-hero-avatar" aria-label="{{ auth('customer')->user()->name }}">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        @else
+            <a href="{{ route('customer.login') }}" class="mobile-hero-avatar" aria-label="Đăng nhập">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        @endif
+    </div>
+</div>
+
 @if($firstCategories->isNotEmpty() || $secondCategories->isNotEmpty())
     <div class="section-1">
         <div class="container py-4">
@@ -52,3 +68,17 @@
         </div>
     </div>
 @endif
+
+{{-- Mobile-only services filter pills band — design polish, no DB content --}}
+<div class="mobile-services-filter desktop-hidden">
+    <div class="container">
+        <h3 class="mb-2 fw-bold">Dịch vụ</h3>
+        <div class="services-pills">
+            <a class="text-decoration-none badge rounded-pill new-badge active">Tất cả</a>
+            <a class="text-decoration-none badge rounded-pill new-badge">Giặt sấy</a>
+            <a class="text-decoration-none badge rounded-pill new-badge">Siêu thị</a>
+            <a class="text-decoration-none badge rounded-pill new-badge">Đặt tiệc</a>
+            <a class="text-decoration-none badge rounded-pill new-badge">Dịch vụ ch...</a>
+        </div>
+    </div>
+</div>

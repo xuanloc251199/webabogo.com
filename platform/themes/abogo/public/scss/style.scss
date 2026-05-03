@@ -1511,3 +1511,505 @@ header {
         }
     }
 }
+
+/* =========================================================
+   Liquid Glass — Mobile responsive (≤ 768px)
+   Reference UI: 440 × 3608, Apple Liquid Glass language.
+   FE-only — preserves DB integration order & display structure.
+   ========================================================= */
+@media (max-width: 768px) {
+    body {
+        background:
+            radial-gradient(120% 60% at 0% 0%, rgba(170, 200, 255, 0.35) 0%, rgba(170, 200, 255, 0) 60%),
+            radial-gradient(120% 60% at 100% 0%, rgba(255, 200, 220, 0.25) 0%, rgba(255, 200, 220, 0) 55%),
+            linear-gradient(180deg, #EAF1FB 0%, #F1F2F6 35%, #F1F2F6 100%) !important;
+        background-attachment: fixed;
+        padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* Glassy fixed top header */
+    header > nav.navbar {
+        background: rgba(255, 255, 255, 0.7) !important;
+        -webkit-backdrop-filter: saturate(180%) blur(22px);
+        backdrop-filter: saturate(180%) blur(22px);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 6px 24px rgba(40, 60, 110, 0.04);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+        .container {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .site-logo {
+            font-size: 22px !important;
+        }
+
+        .input-group .form-control,
+        .input-group .input-group-text {
+            background: rgba(255, 255, 255, 0.55) !important;
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-radius: 12px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            background: rgba(255, 255, 255, 0.55);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-radius: 12px;
+        }
+    }
+
+    main {
+        margin-top: 70px !important;
+        padding-bottom: 16px;
+
+        h3 {
+            font-size: 19px !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.01em;
+            color: #0B0A0A;
+            margin-bottom: 12px !important;
+        }
+    }
+
+    .section-1, .section-2, .section-3,
+    .section-4, .section-5, .section-6 {
+        > .container {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 14px !important;
+            padding-bottom: 14px !important;
+        }
+    }
+
+    /* Section 1 — Category grid */
+    .section-1 {
+        .row {
+            margin-left: -6px;
+            margin-right: -6px;
+        }
+
+        .col-md-6 {
+            padding: 6px !important;
+
+            > .bg-white {
+                background: transparent !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                margin: 0 -4px;
+
+                > .row {
+                    margin: 0;
+                }
+
+                .col-3 {
+                    flex: 0 0 calc(25% - 8px);
+                    max-width: calc(25% - 8px);
+                    margin: 4px;
+                    padding: 14px 6px 12px;
+                    background: rgba(255, 255, 255, 0.72);
+                    -webkit-backdrop-filter: blur(20px) saturate(180%);
+                    backdrop-filter: blur(20px) saturate(180%);
+                    border: 1px solid rgba(255, 255, 255, 0.6);
+                    border-radius: 18px;
+                    box-shadow: 0 6px 18px rgba(60, 90, 150, 0.06);
+
+                    img {
+                        width: 56px !important;
+                        height: 56px !important;
+                        object-fit: contain;
+                        margin: 0 auto;
+                        aspect-ratio: 1 / 1;
+                    }
+
+                    p {
+                        margin-top: 8px !important;
+                        margin-bottom: 0 !important;
+                        font-size: 12px !important;
+                        font-weight: 500 !important;
+                        color: #1F1F1F;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Section 2 — Daily offers (Ưu đãi hôm nay) */
+    .section-2 {
+        .bg-white {
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .product-item {
+            background: rgba(255, 255, 255, 0.72) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 22px !important;
+            box-shadow: 0 10px 26px rgba(50, 80, 140, 0.07);
+            padding: 12px !important;
+            margin-bottom: 14px;
+
+            .row > .col-4 img {
+                border-radius: 16px !important;
+                height: 96px;
+                object-fit: cover;
+                aspect-ratio: 1 / 1;
+            }
+
+            .row > .col-8 h5 a {
+                font-size: 16px;
+            }
+
+            hr {
+                display: none;
+            }
+        }
+    }
+
+    /* Hotel / blog / place cards */
+    .product-item-v2 {
+        background: rgba(255, 255, 255, 0.7) !important;
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        backdrop-filter: blur(22px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 24px !important;
+        box-shadow: 0 12px 32px rgba(50, 80, 140, 0.08) !important;
+        overflow: hidden;
+
+        > a > img.top-rounded-20,
+        > img.top-rounded-20 {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            aspect-ratio: 4 / 3;
+            border-top-left-radius: 24px !important;
+            border-top-right-radius: 24px !important;
+        }
+
+        .product-price-badge {
+            background: #1A1B25;
+            color: #FFFFFF;
+            border-radius: 12px;
+            padding: 7px 14px;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .rating .fa-star,
+        .level-star i {
+            font-size: 12px;
+        }
+    }
+
+    .blog-item {
+        background: rgba(255, 255, 255, 0.7) !important;
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        backdrop-filter: blur(22px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 22px !important;
+        box-shadow: 0 10px 26px rgba(50, 80, 140, 0.07) !important;
+        overflow: hidden;
+
+        > img.top-rounded-20,
+        > a > img.top-rounded-20 {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-top-left-radius: 22px !important;
+            border-top-right-radius: 22px !important;
+        }
+    }
+
+    .place-item {
+        background: rgba(255, 255, 255, 0.7) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 22px !important;
+        box-shadow: 0 10px 26px rgba(50, 80, 140, 0.07);
+        overflow: hidden;
+
+        img.top-rounded-20 {
+            height: 140px;
+            object-fit: cover;
+        }
+
+        h5 {
+            font-size: 16px !important;
+            padding: 12px 0 !important;
+        }
+    }
+
+    /* Filter pills */
+    .new-badge,
+    .badge.new-badge {
+        background: rgba(255, 255, 255, 0.72) !important;
+        -webkit-backdrop-filter: blur(18px) saturate(180%);
+        backdrop-filter: blur(18px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: #1F1F1F !important;
+        padding: 8px 16px !important;
+        margin: 0 6px 6px 0;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        box-shadow: 0 4px 12px rgba(60, 90, 150, 0.05);
+
+        &.active {
+            background: #0B0A0A !important;
+            color: #FFFFFF !important;
+            border-color: #0B0A0A;
+        }
+    }
+
+    /* Swipers — bleed for "peek next" */
+    .product-swiper,
+    .blog-swiper,
+    .flash-sale-swiper {
+        overflow: visible !important;
+        padding-right: 24px;
+    }
+
+    .product-swiper .swiper-slide {
+        width: 86% !important;
+    }
+
+    .blog-swiper .swiper-slide {
+        width: 70% !important;
+    }
+
+    .section-3 .text-center .btn-main-color,
+    .section-4 .text-center .btn-main-color {
+        background: rgba(255, 255, 255, 0.7);
+        -webkit-backdrop-filter: blur(18px) saturate(180%);
+        backdrop-filter: blur(18px) saturate(180%);
+        color: #120B59 !important;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 14px;
+        padding: 10px 26px;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(50, 80, 140, 0.08);
+    }
+
+    /* Section 5 */
+    .section-5 {
+        .bg-white {
+            background: rgba(255, 255, 255, 0.7) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 22px !important;
+            box-shadow: 0 10px 26px rgba(50, 80, 140, 0.07) !important;
+        }
+
+        img.rounded-10,
+        img.rounded-circle {
+            width: 64px !important;
+            height: 64px !important;
+            margin-right: 16px !important;
+        }
+
+        h5 {
+            font-size: 14px !important;
+            text-align: left !important;
+        }
+    }
+
+    /* Section 6 — places mobile grid */
+    .section-6 .desktop-hidden {
+        .row {
+            margin-left: -6px;
+            margin-right: -6px;
+        }
+
+        .col-6 {
+            padding: 6px !important;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    /* Footer */
+    footer {
+        margin-bottom: 12px !important;
+        padding-bottom: 12px !important;
+
+        > .container {
+            background: rgba(255, 255, 255, 0.65) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 22px !important;
+            padding: 18px 12px !important;
+        }
+    }
+
+    /* Bottom mobile nav — floating Liquid Glass dock */
+    .mobile-menu {
+        position: fixed;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        background: rgba(255, 255, 255, 0.7) !important;
+        -webkit-backdrop-filter: saturate(200%) blur(30px);
+        backdrop-filter: saturate(200%) blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 28px;
+        padding: 10px 8px !important;
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.6) inset,
+            0 18px 40px rgba(20, 40, 90, 0.14),
+            0 4px 12px rgba(20, 40, 90, 0.06);
+        z-index: 1040;
+        display: flex;
+        justify-content: space-around;
+
+        .menu-item {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 6px 2px;
+            color: #6B6B73;
+            border-radius: 18px;
+            font-size: 10px !important;
+            transition: color 0.2s ease, background 0.2s ease;
+
+            i {
+                font-size: 20px !important;
+                margin-bottom: 2px !important;
+                line-height: 1;
+                display: block;
+            }
+
+            &.active {
+                color: #2E80F2;
+                background: rgba(46, 128, 242, 0.1);
+            }
+
+            &.menu-fab {
+                flex: 0 0 48px;
+                height: 48px;
+                margin: -6px 4px;
+                background: linear-gradient(135deg, #2E80F2 0%, #5AA8FF 100%);
+                color: #FFFFFF;
+                border-radius: 50%;
+                box-shadow: 0 10px 22px rgba(46, 128, 242, 0.45);
+                font-size: 0 !important;
+                align-self: center;
+
+                i {
+                    font-size: 18px !important;
+                    margin-bottom: 0 !important;
+                }
+            }
+        }
+
+        &.product-page {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            border-radius: 22px;
+            padding: 12px 16px !important;
+        }
+    }
+
+    /* Generic glass touch-ups */
+    .product-search-section {
+        background: rgba(255, 255, 255, 0.7) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 18px !important;
+        box-shadow: 0 10px 26px rgba(50, 80, 140, 0.07);
+
+        .single-date-picker,
+        .guest-picker {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+        }
+    }
+
+    .breadcrumb {
+        padding-left: 4px;
+    }
+
+    .swiper-pagination-bullet {
+        background: rgba(11, 10, 10, 0.3) !important;
+
+        &-active {
+            background: #0B0A0A !important;
+        }
+    }
+
+    /* Mobile-only hero header (Liquid Glass page title) */
+    .mobile-hero {
+        padding-top: 8px;
+        padding-bottom: 4px;
+
+        .mobile-hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0B0A0A;
+            line-height: 1.1;
+        }
+
+        .mobile-hero-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 6px 16px rgba(50, 80, 140, 0.1);
+            color: #2E80F2;
+            font-size: 18px;
+            text-decoration: none;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    /* Mobile-only services filter pills band */
+    .mobile-services-filter {
+        padding-top: 4px;
+        padding-bottom: 8px;
+
+        .services-pills {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-right: 16px;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            > .new-badge {
+                flex: 0 0 auto;
+                white-space: nowrap;
+            }
+        }
+    }
+}
